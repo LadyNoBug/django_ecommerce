@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="category-con">
+      <div class="category-banner">
+        <div class="w1200">
+          <img src="{% static 'img/banner1.jpg' %}">
+        </div>
+      </div>
+    </div>
+    <div class="floors">
+      <div class="sk">
+        <div class="sk_inner w1200">
+          <div class="sk_hd">
+            <a href="javascript:;">
+              <img src="{% static 'img/s_img1.jpg' %}">
+            </a>
+          </div>
+          <div class="sk_bd">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+              <div class="item-box">
+              {% for c in commodityInfos %}
+                  {% if forloop.counter < 5 %}
+                    <div class="item">
+                    <a href="{% url 'commodity:detail' c.id %}">
+                        <img src="{{ c.img.url }}"></a>
+                    <div class="title">{{ c.name }}</div>
+                    <div class="price">
+                      <span>${{ c.discount|floatformat:'2' }}</span>
+                      <del>${{ c.price|floatformat:'2' }}</del>
+                    </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                </div>
+
+              <div class="item-box">
+              {% for c in commodityInfos %}
+                  {% if forloop.counter > 4 %}
+                    <div class="item">
+                    <a href="{% url 'commodity:detail' c.id %}">
+                        <img src="{{ c.img.url }}"></a>
+                    <div class="title">{{ c.name }}</div>
+                    <div class="price">
+                      <span>${{ c.discount|floatformat:'2' }}</span>
+                      <del>${{ c.price|floatformat:'2' }}</del>
+                    </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div>
+
+    <div class="product-cont w1200" id="product-cont">
+      <div class="product-item product-item1 layui-clear">
+        <div class="left-title">
+          <h4><i>1FFF</i></h4>
+          <img src="{% static 'img/icon_gou.png' %}">
+          <h5>Fashion</h5>
+        </div>
+        <div class="right-cont">
+          <a href="javascript:;" class="top-img"><img src="{% static 'img/img12.jpg' %}" alt=""></a>
+          <div class="img-box">
+            {% for c in clothes %}
+              <a href="{% url 'commodity:detail' c.id %}"><img src="{{ c.img.url }}"></a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="product-item product-item2 layui-clear">
+        <div class="left-title">
+          <h4><i>2FFF</i></h4>
+          <img src="{% static 'img/icon_gou.png' %}">
+          <h5>Electronics</h5>
+        </div>
+        <div class="right-cont">
+          <a href="javascript:;" class="top-img"><img src="{% static 'img/img12.jpg' %}" alt=""></a>
+          <div class="img-box">
+            {% for f in food %}
+            <a href="{% url 'commodity:detail' f.id %}"><img src="{{ f.img.url }}"></a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="product-item product-item3 layui-clear">
+        <div class="left-title">
+          <h4><i>3F</i></h4>
+          <img src="{% static 'img/icon_gou.png' %}">
+          <h5>Pets</h5>
+        </div>
+        <div class="right-cont">
+          <a href="javascript:;" class="top-img"><img src="{% static 'img/img12.jpg' %}"></a>
+          <div class="img-box">
+            {% for g in goods %}
+            <a href="{% url 'commodity:detail' g.id %}"><img src="{{ g.img.url }}"></a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+  
+{% block footer %}
+  <div class="footer">
+    <div class="ng-promise-box">
+      <div class="ng-promise w1200">
+        <p class="text">
+          <a class="icon1" href="javascript:;">Return In 30 Days</a>
+          <a class="icon2" href="javascript:;">Free Delivery For $99</a>
+          <a class="icon3" style="margin-right: 0" href="javascript:;">Quality Quaranteed</a>
+        </p>
+      </div>
+    </div>
+    <div class="mod_help w1200">                                     
+      <p>
+        <a href="javascript:;">About Us</a>
+        <span>|</span>
+        <a href="javascript:;">Help Center</a>
+        <span>|</span>
+        <a href="javascript:;">Join Us</a>
+        <span>|</span>
+        <a href="javascript:;">Product Info</a>
+        <span>|</span>
+        <a href="javascript:;">Partnership</a>
+      </p>
+      <p class="coty">Copyright XXX.com &copy; 2012-2021</p>
+    </div>
+  </div>
+{% endblock footer %}
+
+{% block script %}
+layui.config({
+    base: '{% static 'js/' %}'
+  }).use(['mm','carousel'],function(){
+      var carousel = layui.carousel,
+     mm = layui.mm;
+     var option = {
+        elem: '#test1'
+        ,width: '100%'
+        ,arrow: 'always'
+        ,height:'298' 
+        ,indicator:'none'
+      }
+      carousel.render(option);
+});
+{% endblock script %}
