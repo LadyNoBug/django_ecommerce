@@ -52,11 +52,11 @@ def commodityView(request):
 
 def collectView(request):
     id = request.GET.get('id', '')
-    result = {"result": "已收藏"}
-    likes = request.session.get('likes', [])
-    if id and not int(id) in likes:
-        # 对商品的收藏数量执行自增加1
-        CommodityInfos.objects.filter(id=id).update(likes=F('likes')+1)
-        result['result'] = "收藏成功"
-        request.session['likes'] = likes + [int(id)]
+    # result = {"result": "已收藏"}
+    # likes = request.session.get('likes', [])
+    # if id and not int(id) in likes:
+    #     # 对商品的收藏数量执行自增加1
+    #     CommodityInfos.objects.filter(id=id).update(likes=F('likes')+1)
+    #     result['result'] = "收藏成功"
+    #     request.session['likes'] = likes + [int(id)]
     return JsonResponse(result)

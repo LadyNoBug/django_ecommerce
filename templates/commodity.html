@@ -26,7 +26,7 @@
               <a {% if not s or s == 'sold' %}class="active" {% endif %} href="{% url 'commodity:commodity' %}?t={{ t }}&s=sold&n={{ n }}">Sales</a>
               <a {% if s == 'price' %}class="active" {% endif %} href="{% url 'commodity:commodity' %}?t={{ t }}&s=price&n={{ n }}">Price</a>
               <a {% if s == 'created' %}class="active" {% endif %} href="{% url 'commodity:commodity' %}?t={{ t }}&s=created&n={{ n }}">New</a>
-              <a {% if s == 'likes' %}class="active" {% endif %} href="{% url 'commodity:commodity' %}?t={{ t }}&s=likes&n={{ n }}">Save</a>
+              <!-- <a {% if s == 'likes' %}class="active" {% endif %} href="{% url 'commodity:commodity' %}?t={{ t }}&s=likes&n={{ n }}">Save</a> -->
 
             </div>
             <div class="prod-number">

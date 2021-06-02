@@ -17,11 +17,11 @@
           <div class="itemInfo">
             <div class="title">
               <h4>{{ commoditys.name }}</h4>
-                {% if likes %}
+                <!-- {% if likes %}
               <span id="collect"><i class="layui-icon layui-icon-rate-solid"></i>Save</span>
                 {% else %}
               <span id="collect"><i class="layui-icon layui-icon-rate"></i>Save</span>
-                {% endif %}
+                {% endif %} -->
             </div>
             <div class="summary">
               <p class="reference"><span>List Price</span> <del>${{ commoditys.price|floatformat:'2' }}</del></p>
@@ -100,10 +100,10 @@
     $('#collect').on('click',function(){
         var url = "{% url 'commodity:collect' %}?id={{ commoditys.id }}"
         $.get(url ,function(data,status){
-            if (data.result=="收藏成功"){
+            <!-- if (data.result=="收藏成功"){
                 $('#collect').find("i").removeClass("layui-icon-rate")
                 $('#collect').find("i").addClass("layui-icon-rate-solid")
-            }
+            } -->
             alert(data.result);
         });
     });
